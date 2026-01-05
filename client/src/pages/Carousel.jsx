@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
-import About from "./About";
-import Products from "./Products";
-import Testimonial from "./Testimonial";
 
-function Home() {
+function Carousel() {
   return (
-    <>
     <div className="container-fluid px-0 mb-5">
       <div
         id="header-carousel"
@@ -86,11 +82,7 @@ function Home() {
         </button>
       </div>
     </div>
-     <About />
-     <Products />
-     <Testimonial />
-   </>
   );
 }
 
-export default Home;
+export default Carousel;
