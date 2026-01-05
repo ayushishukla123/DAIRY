@@ -37,7 +37,21 @@ function Header() {
           <h1 className="m-0">Amrit Dairy</h1>
         </Link>
 
-        <div className="collapse navbar-collapse show">
+        {/* Hamburger Toggle Button */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Collapsible Content */}
+        <div className="collapse navbar-collapse" id="navbarContent">
           <div className="navbar-nav ms-auto p-4 p-lg-0">
             <Link to="/" className="nav-item nav-link">
               Home
@@ -45,14 +59,11 @@ function Header() {
             <Link to="/about" className="nav-item nav-link">
               About
             </Link>
-            <Link to="/products" className="nav-item nav-link">
-              Products
-            </Link>
-            <Link to="/order" className="nav-item nav-link">
-              Order
-            </Link>
             <Link to="/contact" className="nav-item nav-link">
               Contact
+            </Link>
+            <Link to="/login" className="nav-item nav-link">
+              Login
             </Link>
           </div>
         </div>
