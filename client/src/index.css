@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Page */
+.page {
+  width: 100%;
+}
+
+/* Header */
+.header {
+  background: #2e7d32;
+  color: white;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header nav a {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+/* Hero section */
+.hero {
+  background: #e8f5e9;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Products */
+.products {
+  padding: 40px;
+  text-align: center;
+}
+
+.product-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 180px;
+  border-radius: 8px;
+}
+
+/* Footer */
+.footer {
+  background: #2e7d32;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
