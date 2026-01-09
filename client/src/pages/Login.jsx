@@ -1,7 +1,45 @@
 import React from "react";
 import "../assets/css/login.css";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value.trim();
+    const password = e.target.password.value;
+
+    if (!email || !password) {
+      alert("Email and password required");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // ✅ IMPORTANT: save user for header & session
+        localStorage.setItem("user", JSON.stringify(data));
+
+        alert(`Welcome ${data.name} ✅`);
+        navigate("/"); // home page
+      } else {
+        alert(data.message || "Login failed ❌");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error");
+    }
+  };
+
   return (
     <div className="login-page">
       {/* Left Illustration */}
@@ -46,15 +84,20 @@ function Login() {
             <p>Access your dairy account</p>
           </div>
 
-          <form className="harmony-form">
+          <form className="harmony-form" onSubmit={handleSubmit}>
             <div className="organic-field">
               <label>Email Address</label>
-              <input type="email" required autoComplete="email" />
+              <input type="email" name="email" required autoComplete="email" />
             </div>
 
             <div className="organic-field">
               <label>Password</label>
-              <input type="password" required autoComplete="current-password" />
+              <input
+                type="password"
+                name="password"
+                required
+                autoComplete="current-password"
+              />
             </div>
 
             <button type="submit" className="harmony-button">
@@ -69,7 +112,7 @@ function Login() {
 
           <div className="nurture-signup">
             <span>New user? </span>
-            <a href="#">Sign Up</a>
+            <Link to="/signup">Sign Up</Link>
           </div>
         </div>
       </div>
