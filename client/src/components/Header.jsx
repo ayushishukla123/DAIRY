@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+
+  // ✅ check user login
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
   return (
     <>
       {/* Topbar */}
@@ -37,20 +47,16 @@ function Header() {
           <h1 className="m-0">Amrit Dairy</h1>
         </Link>
 
-        {/* Hamburger Toggle Button */}
+        {/* Toggle */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarContent"
-          aria-controls="navbarContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Collapsible Content */}
         <div className="collapse navbar-collapse" id="navbarContent">
           <div className="navbar-nav ms-auto p-4 p-lg-0">
             <Link to="/" className="nav-item nav-link">
@@ -62,9 +68,29 @@ function Header() {
             <Link to="/contact" className="nav-item nav-link">
               Contact
             </Link>
-            <Link to="/login" className="nav-item nav-link">
-              Login
-            </Link>
+
+            {/* 🔐 USER NOT LOGGED IN */}
+            {!user && (
+              <Link to="/login" className="nav-item nav-link">
+                Login
+              </Link>
+            )}
+
+            {/* ✅ USER LOGGED IN */}
+            {user && (
+              <>
+                <span className="nav-item nav-link fw-bold">
+                  Hi, {user.name}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="btn btn-link nav-item nav-link text-danger"
+                  style={{ textDecoration: "none" }}
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         </div>
       </nav>

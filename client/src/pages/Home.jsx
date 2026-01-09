@@ -2,10 +2,17 @@ import { Link } from "react-router-dom";
 import About from "./About";
 import Products from "./Products";
 import Testimonial from "./Testimonial";
-
+import { useLocation } from "react-router-dom";
 function Home() {
+  const location = useLocation();
+  const user = location.state?.user;
+
   return (
     <>
+      <div>
+        <h1>Welcome {user?.name}</h1>
+        <p>Email: {user?.email}</p>
+      </div>
       <div className="container-fluid px-0 mb-5">
         <div
           id="header-carousel"
